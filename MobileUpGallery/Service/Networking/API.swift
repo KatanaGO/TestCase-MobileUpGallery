@@ -13,5 +13,7 @@ struct API {
     static let host     = "api.vk.com"
     static let version  = "5.131"
     
-    static let newsFeed = "/method/newsfeed.get"
+    static let owner_id = "-128666765"
+    static let album_id = "266276915"
+    static let photos   = "/method/photos.get"
 }
