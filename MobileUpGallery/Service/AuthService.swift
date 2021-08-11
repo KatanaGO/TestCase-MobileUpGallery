@@ -8,10 +8,11 @@
 import Foundation
 import VKSdkFramework
 
-protocol AuthServiceDelegate: class {
+protocol AuthServiceDelegate: AnyObject {
     func authServiceShouldShow(_ viewContorller: UIViewController)
     func authServiceSignIn()
     func authServiceDidSignInFali()
+    func authServiceSignOut()
 }
 
 final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
@@ -47,6 +48,11 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
                 print("auth problems, state \(state) error \(String(describing: error))")
             }
         }
+    }
+    
+    func logOut() {
+        VKSdk.forceLogout()
+        delegate?.authServiceSignOut()
     }
     
     // MARK: VKSdkDelegate

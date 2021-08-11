@@ -10,7 +10,7 @@ import VKSdkFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AuthServiceDelegate {
-       
+          
     var window: UIWindow?
     var authService: AuthService!
     static func shared() -> AppDelegate {
@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AuthServiceDelegate {
         self.authService = AuthService()
         authService.delegate = self
         
-        let authVC: AuthViewController = AuthViewController.loadFromStoryboard()
+        //let authVC: AuthViewController = AuthViewController.loadFromStoryboard()
+        let authVC = AuthViewController(nibName: "AuthViewController", bundle: nil)
         
         window?.rootViewController = authVC
         window?.makeKeyAndVisible()
@@ -64,12 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AuthServiceDelegate {
     
     func authServiceSignIn() {
         print(#function)
-        let feedVC: FeedViewController = FeedViewController.loadFromStoryboard()
-        let navVC = UINavigationController(rootViewController: feedVC)
+        //let galleryVC: GalleryViewController = GalleryViewController.loadFromStoryboard()
+        let galleryVC = GalleryViewController(nibName: "GalleryViewController", bundle: nil)
+        let navVC = UINavigationController(rootViewController: galleryVC)
         window?.rootViewController = navVC
     }
     
     func authServiceDidSignInFali() {
         print(#function)
     }
+    
+    func authServiceSignOut() {
+        //let authVC: AuthViewController = AuthViewController.loadFromStoryboard()
+        let authVC = AuthViewController(nibName: "AuthViewController", bundle: nil)
+        let navVC = UINavigationController(rootViewController: authVC)
+        window?.rootViewController = navVC
+        print(#function)
+    }
+    
 }
